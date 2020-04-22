@@ -43,7 +43,7 @@ Defining patterns
 Arguments accepted by `zev#register()`:
 
     filetype      Filetype to register the pattern for. Separate multiple with a
-                  comma, or use an empty string to make it available for all
+                  space, or use an empty string to make it available for all
                   filetypes.
 
     name          The name as used with `:Zev name`.

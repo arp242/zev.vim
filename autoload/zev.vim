@@ -80,9 +80,14 @@ fun! zev#apply(bang, line1, line2, name) abort
 	call winrestview(l:s)
 endfun
 
+" trim() is 8.0.1630 (March 2018)
+fun s:trim_ws(s) abort
+	return substitute(a:s, '\v^\s*(.{-})\s*$', '\1', '')
+endfun
+
 " Register a new pattern; this is 'compiled' in to a :substitute command.
 fun! zev#register(filetype, name, desc, search, replace) abort
-	let l:filetypes = map(split(a:filetype, ','), { _, v -> trim(v)})
+	let l:filetypes = map(split(a:filetype, ' '), { _, v -> s:trim_ws(v)})
 
 	for l:ft in l:filetypes
 		if get(s:patterns, l:ft, '') is# ''
