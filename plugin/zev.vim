@@ -15,7 +15,7 @@ call zev#register('go', 'unwrap',
 call zev#register('go', 'errctx',
 			\ 'Add error context to the last variable in returns',
 			\ '\vreturn (.{-}, )?\zs(\k+)',
-			\ 'fmt.Errorf(": %w", \2)')
+			\ 'fmt.Errorf("█: %w", \2)')
 
 " Markdown
 call zev#register('markdown', 'html-link',

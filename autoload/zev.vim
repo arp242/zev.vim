@@ -72,6 +72,12 @@ fun! zev#apply(bang, line1, line2, name) abort
 		echom substitute(v:exception, '^Vim(substitute):', '', '')
 		echohl None
 	endtry
+
+	" TODO: this is rather ugly, but not sure how to do this better.
+	keepjumps normal! f█
+	let l:s = winsaveview()
+	silent s/█//e
+	call winrestview(l:s)
 endfun
 
 " Register a new pattern; this is 'compiled' in to a :substitute command.

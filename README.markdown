@@ -54,3 +54,6 @@ Arguments accepted by `zev#register()`:
     replace,      The replace and search patterns; a `:s/../../` command will
     search        be built from this. Don't include the delimiters and don't
                   escape `/` as `\/`, Zev will take care of this automatically
+
+zev will put the cursor position at `█` (U+2588, FULL BLOCK) in the replace
+pattern. You can insert this in Vim with `<C-v>u2588`.
