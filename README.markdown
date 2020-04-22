@@ -1,4 +1,4 @@
-It's easy to change a lot of stuff with `:substitute', but not always easy to
+It's easy to change a lot of stuff with `:substitute`, but not always easy to
 remember patterns for more complex substitutions.
 
 zev.vim makes it easier to apply these kind of common substitutions. For
@@ -8,7 +8,7 @@ example, I might want to change:
     // to:
     return fmt.Errorf("context: %w", err)
 
-With zev.vim you can define patterns for different filetypes:
+With zev.vim you can define patterns:
 
     call zev#register('go', 'unwrap',
                 \ 'Replace errors.Wrap() with stdlib fmt.Errorf()',
@@ -22,7 +22,7 @@ Command reference:
     :Zev  name[/flags]  Apply a registered pattern; the optional [flags] are
                         passed to the :substitute command (See :help s_flags).
                         For example ":Zev errctx/c" to confirm.
-    :Zev! name          Echo a registered pattern
+    :Zev! name[/flags]  Populate the commandline but don't do anything.
     :Zev                List registered patterns for the current filetype.
     :Zev!               List all registered patterns.
 
@@ -39,6 +39,8 @@ you should watch it.
 
 Defining patterns
 -----------------
+
+Arguments accepted by `zev#register()`:
 
     filetype      Filetype to register the pattern for. Separate multiple with a
                   comma, or use an empty string to make it available for all
