@@ -1,3 +1,8 @@
+scriptencoding utf8
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 let s:patterns = {}
 
 fun! zev#cmd(bang, line1, line2, ...) abort
@@ -28,7 +33,7 @@ fun! zev#list(bang) abort
 	let l:i = 0
 	for [l:name, l:cmd] in items(l:pats)
 		echo printf('%s   %s%s', l:name, repeat(' ', l:align-len(l:name)), l:cmd[0])
-		echo printf("%s %s", repeat(' ', l:align+2), l:cmd[1])
+		echo printf('%s %s', repeat(' ', l:align+2), l:cmd[1])
 		if l:i < len(l:pats) - 1
 			echo "\n"
 		endif
@@ -115,3 +120,6 @@ fun! zev#complete(lead, cmdline, cursor) abort
 	call extend(l:pats, get(s:patterns, &filetype, {}))
 	return filter(keys(l:pats), {_, v -> strpart(l:v, 0, len(a:lead)) is# a:lead})
 endfun
+
+let &cpo = s:save_cpo
+unlet s:save_cpo

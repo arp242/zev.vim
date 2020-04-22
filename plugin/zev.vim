@@ -1,3 +1,10 @@
+scriptencoding utf8
+
+if exists('g:loaded_zev') | finish | endif
+let g:loaded_zev = 1
+let s:save_cpo = &cpo
+set cpo&vim
+
 command! -bang -range -nargs=? 
 			\ -complete=customlist,zev#complete
 			\ Zev call zev#cmd(<bang>0, <line1>, <line2>, <f-args>)
@@ -28,3 +35,6 @@ call zev#register('html', 'md-link',
 			\ 'Transform a Markdown link to HTML syntax',
 			\ '\[\(.\{-}\)\](\(.\{-}\))',
 			\ '<a href="\2">\1</a>')
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
