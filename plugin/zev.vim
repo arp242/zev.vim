@@ -24,14 +24,18 @@ call zev#register('go', 'errctx',
 			\ '\vreturn (.{-}, )?\zs(\k+)',
 			\ 'fmt.Errorf("█: %w", \2)')
 
-" Markdown
-call zev#register('markdown', 'html-link',
+call zev#register('go', 'to-func',
+			\ 'Transform a method to a function',
+			\ '\vfunc \(\i+ \*?\i+\) (\i+\(.{-} \{)',
+			\ 'func \1')
+
+" HTML, Markdown
+call zev#register('markdown html', 'link-to-markdown',
 			\ 'Transform a HTML link to Markdown syntax',
 			\ '<a .\{-}href=[''"]\(.\{-}\)[''"].\{-}>\(.\{-}\)</a>',
 			\ '[\2](\1)')
 
-" HTML
-call zev#register('html', 'md-link',
+call zev#register('markdown html', 'link-to-html',
 			\ 'Transform a Markdown link to HTML syntax',
 			\ '\[\(.\{-}\)\](\(.\{-}\))',
 			\ '<a href="\2">\1</a>')

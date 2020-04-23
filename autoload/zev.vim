@@ -7,14 +7,14 @@ let s:patterns = {}
 
 fun! zev#cmd(bang, line1, line2, ...) abort
 	if a:0 is# 0
-		return zev#list(a:bang)
+		return zev#list(a:bang, 1)
 	endif
 	
 	return zev#apply(a:bang, a:line1, a:line2, a:1)
 endfun
 
 " List all patterns.
-fun! zev#list(bang) abort
+fun! zev#list(bang, display) abort
 	if a:bang
 		let l:pats = {}
 		for l:ft in keys(s:patterns)
@@ -23,6 +23,10 @@ fun! zev#list(bang) abort
 	else
 		let l:pats = get(s:patterns, '', {})
 		call extend(l:pats, get(s:patterns, &filetype, {}))
+	endif
+
+	if !a:display
+		return l:pats
 	endif
 
 	let l:align = 0
